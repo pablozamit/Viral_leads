@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext } from 'react';
-import axios from 'axios';
+
 
 const AuthContext = createContext(null);
 
@@ -9,10 +9,17 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await axios.post('/api/auth/login', {
-        email,
-        password
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          password
+        })
       });
+      const data = await response.json();
       if (response.data.message === 'Login successful') {
         setUser({ email });
       }

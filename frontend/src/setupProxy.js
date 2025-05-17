@@ -4,7 +4,7 @@ module.exports = function(app) {
     app.use(
         '/api',
         createProxyMiddleware({
-            target: 'http://localhost:3001',
+            target: process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : 'https://api.vercel.app',
             changeOrigin: true,
         })
     );
