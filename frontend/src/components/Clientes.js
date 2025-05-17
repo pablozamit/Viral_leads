@@ -26,10 +26,6 @@ const Clientes = () => {
     navigate('/clientes/new');
   };
 
-  const handleViewDetails = (id) => {
-    navigate(`/clientes/${id}`);
-  };
-
   const handleEdit = (id) => {
     navigate(`/clientes/${id}/edit`);
   };

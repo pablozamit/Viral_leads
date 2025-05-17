@@ -10,7 +10,7 @@ const Leads = () => {
 
   useEffect(() => {
     fetchLeads();
-  }, [campañaId]);
+  }, [campañaId, fetchLeads]);
 
   const fetchLeads = async () => {
     try {

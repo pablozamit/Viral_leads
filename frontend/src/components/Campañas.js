@@ -11,7 +11,7 @@ const Campañas = () => {
 
   useEffect(() => {
     fetchCampañas();
-  }, [clienteId]);
+  }, [clienteId, fetchCampañas]);
 
   const fetchCampañas = async () => {
     try {

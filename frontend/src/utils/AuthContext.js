@@ -5,7 +5,6 @@ const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   const login = async (email, password) => {
     try {
@@ -19,7 +18,7 @@ export const AuthProvider = ({ children }) => {
           password
         })
       });
-      const data = await response.json();
+      const responseJson = await response.json();
       if (response.data.message === 'Login successful') {
         setUser({ email });
       }
