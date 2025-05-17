@@ -11,8 +11,10 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-# Configuración
-app.config.from_object(config[os.getenv('FLASK_ENV', 'development')])
+# Configuración para Vercel
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///referral_system.db')
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev-key')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
@@ -189,4 +191,5 @@ def get_campaign_stats(campaign_id):
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+    port = int(os.getenv('PORT', 3000))
+    app.run(host='0.0.0.0', port=port)
